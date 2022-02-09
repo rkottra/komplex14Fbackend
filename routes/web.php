@@ -18,4 +18,4 @@ Route::get('/', function () {
 });
 
 use App\Http\Controllers\Pilota;
-Route::get('/pilotak', [Pilota::class, "getPilotak"]);
+Route::get('/api/pilotak', [Pilota::class, "getPilotak"]);
