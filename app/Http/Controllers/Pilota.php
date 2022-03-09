@@ -25,6 +25,29 @@ class Pilota extends Controller
         return DB::delete("DELETE FROM versenyzok WHERE ID = ?", array($id));
     }
 
+    public function insertPilota( Request $request ) {
+        $pilota = $request->all();
+
+        return DB::insert("INSERT INTO versenyzok(nev, nemzet, magassag, szuletes, csapat)
+                            VALUE (?, ?, ?, ?, ?)", array(
+                                    $pilota["nev"], $pilota["nemzet"], $pilota["magassag"], 
+                                    date("Y-m-d", strtotime($pilota["szuletes"])), 
+                                    $pilota["csapat"]["ID"])
+                                );
+    }
+
+    public function updatePilota( $id, Request $request ) {
+        $pilota = $request->all();
+
+        return DB::update("UPDATE versenyzok SET nev = ?, nemzet = ?, magassag= ?, 
+                                szuletes= ?, csapat = ?
+                            WHERE id = ?", array(
+                                    $pilota["nev"], $pilota["nemzet"], $pilota["magassag"], 
+                                    date("Y-m-d", strtotime($pilota["szuletes"])), 
+                                    $pilota["csapat"]["ID"], $id)
+                                );
+    }
+
     public function getToken() {
         return csrf_token();
     }

@@ -25,3 +25,6 @@ Route::get('/api/pilotak', [Pilota::class, "getPilotak"]);
 
 Route::delete('/api/pilotak/{id}', [Pilota::class, "deletePilota"]);
 
+Route::put('/api/pilotak', [Pilota::class, "insertPilota"]);
+
+Route::post('/api/pilotak/{id}', [Pilota::class, "updatePilota"]);
